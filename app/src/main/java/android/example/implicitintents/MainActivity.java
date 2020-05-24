@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.drm.DrmStore;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -15,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
     private EditText mWebsiteEditText;
     private EditText mLocationEditText;
     private EditText mShareTextEditText;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
+
 
 
     @Override
@@ -24,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         mWebsiteEditText = findViewById(R.id.website_editText);
         mLocationEditText = findViewById(R.id.location_edittext);
         mShareTextEditText = findViewById(R.id.share_edittext);
+
     }
 
     public void openWebsite(View view) {
@@ -61,5 +66,13 @@ public class MainActivity extends AppCompatActivity {
                 .setChooserTitle(R.string.edittext_share)
                 .setText(txt)
                 .startChooser();
+    }
+
+
+    public void takePicture(View view) {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
     }
 }

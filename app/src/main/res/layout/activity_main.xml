@@ -56,5 +56,5 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:text="@string/take_a_picture"
-        android:onClick="shareText"/>
+            android:onClick="takePicture"/>
 </LinearLayout>
